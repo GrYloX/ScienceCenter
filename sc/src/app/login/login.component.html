@@ -1,0 +1,13 @@
+<br/>
+		<div class="col text-center text-danger">
+			<h1>Prijava</h1>
+    </div>
+    <form [formGroup]="credentials" class="text-center mt-5" (ngSubmit)="login()">
+      <div class="form-group">
+				<label for="username">Korisničko ime</label>
+				<input class="form-control text-center w-25 mx-auto" type="text" formControlName="username" placeholder="Unesite korisničko ime" required><br/>			
+			    <label for="password">Lozinka</label>
+			    <input class="form-control text-center w-25 mx-auto" type="password" formControlName="password" placeholder="Unesite lozinku" required>		
+      </div>
+			<button class="btn btn-danger bg-danger" type="submit" [disabled]="!credentials.valid">Login</button> Nemate profil? <a href="registration.html">Registrujte se.</a>
+    </form>

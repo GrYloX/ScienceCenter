@@ -1,0 +1,60 @@
+<br/>
+<div *ngIf="magazine">
+  <div class="text-center text-danger">
+      <h1>{{magazine.name}}</h1>
+    </div>		
+  <br/>
+  <div class="text-center" *ngIf="free">    
+    <button class="btn btn-danger" (click)="subscribe()">Pretplati se</button>
+    <br/>
+    <br/>
+  </div>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="card col-3">
+      <div class="card-header text-center">
+        Detalji
+      </div>
+      <div class="card-body">
+        <table class = "table">
+          <tr>
+            <td class="text-right">ISSN</td>
+            <td class="text-left">{{magazine.issn}}</td>
+          </tr>
+          <tr>
+            <td class="text-right">Naučne oblasti</td>
+            <td class="text-left">
+              <ul class="list-unstyled">
+                <li *ngFor="let name of magazine.scienceFieldNames">{{name}}</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right">Glavni urednik</td>
+            <td class="text-left">{{magazine.mainEditorFirstName}} {{magazine.mainEditorLastName}}</td>
+          </tr>
+          <tr>
+              <td class="text-right">Način plaćanja</td>
+              <td class="text-left">{{magazine.paymentType}}</td>
+          </tr>
+          <tr *ngIf="free">
+              <td class="text-right">Cena članarine</td>
+              <td class="text-left">{{magazine.membershipPrice}}</td>
+          </tr>
+        </table>   
+      </div>
+    </div>  
+    <div class="col-3">
+      <div *ngIf="editions" class="text-left text-danger">
+        <h2 class="text-center">Izdanja</h2>
+        <br/>
+        <ul>
+          <li *ngFor="let edition of editions">
+            <a routerLink="/edition/{{edition.id}}">{{edition.editionName}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
