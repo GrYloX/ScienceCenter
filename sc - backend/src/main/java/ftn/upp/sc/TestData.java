@@ -1,12 +1,16 @@
 package ftn.upp.sc;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.camunda.bpm.engine.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +22,7 @@ import ftn.upp.sc.dto.common.ScienceFieldDTO;
 import ftn.upp.sc.dto.payment.PaymentOptionDTO;
 import ftn.upp.sc.dto.payment.PaymentParametersDTO;
 import ftn.upp.sc.dto.user.EditorDTO;
+import ftn.upp.sc.dto.user.ReviewerDTO;
 import ftn.upp.sc.dto.user.UserDTO;
 import ftn.upp.sc.dto.user.UserDetailsDTO;
 import ftn.upp.sc.model.common.Application;
@@ -29,6 +34,7 @@ import ftn.upp.sc.model.enums.MagazinePaymentType;
 import ftn.upp.sc.model.payment.PaymentOption;
 import ftn.upp.sc.model.payment.PaymentParameters;
 import ftn.upp.sc.model.users.Editor;
+import ftn.upp.sc.model.users.Reviewer;
 import ftn.upp.sc.model.users.User;
 import ftn.upp.sc.model.users.UserDetails;
 import ftn.upp.sc.service.common.ApplicationService;
@@ -39,6 +45,7 @@ import ftn.upp.sc.service.common.ScienceFieldService;
 import ftn.upp.sc.service.payment.PaymentOptionService;
 import ftn.upp.sc.service.payment.PaymentParametersService;
 import ftn.upp.sc.service.user.EditorService;
+import ftn.upp.sc.service.user.ReviewerService;
 import ftn.upp.sc.service.user.UserDetailsService;
 import ftn.upp.sc.service.user.UserService;
 
@@ -53,7 +60,6 @@ public class TestData {
 	private EditorService editorService;
 	@Autowired
 	private ScienceFieldService scienceFieldService;
-	
 	@Autowired
 	private PaymentParametersService paymentParametersService;
 	@Autowired
@@ -66,24 +72,42 @@ public class TestData {
 	private PaperService paperService;
 	@Autowired
 	private PaymentOptionService paymentOptionService;
-	
-	
+	@Autowired
+	IdentityService identityService;
+	@Autowired
+	private ReviewerService reviewerService;
 	
 	@PostConstruct
 	private void init(){
 		
+		identityService.deleteUser("a");
+		identityService.deleteUser("b");
+		identityService.deleteUser("c");
+		identityService.deleteUser("d");
+		identityService.deleteUser("s");
+		identityService.deleteUser("m");
+		identityService.deleteUser("z");
+		identityService.deleteUser("x");
+		identityService.deleteUser("y");
+		
 		UserDetailsDTO ud1DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Goran","Rajic", "Veternik","Srbija");
-		UserDetailsDTO ud2DTO = new UserDetailsDTO(0, "valentinasoldo94@outlook.com","Valentina","Soldo", "Vrbas","Srbija");
-		UserDetailsDTO ud3DTO = new UserDetailsDTO(0, "nebojsarajic92@yahoo.com","Nebojsa","Rajic", "Novi Sad","Srbija");
-		UserDetailsDTO ud4DTO = new UserDetailsDTO(0, "peraperic95@yahoo.com","Pera","Peric", "Novi Sad","Srbija");
-		UserDetailsDTO ud5DTO = new UserDetailsDTO(0, "smiljanatedic@gmail.com","Smiljana","Tedic", "Novi Sad","Srbija");
-		UserDetailsDTO ud6DTO = new UserDetailsDTO(0, "milanacarapic95@gmail.com","Milana","Carapic", "Novi Sad","Srbija");
+		UserDetailsDTO ud2DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Valentina","Soldo", "Vrbas","Srbija");
+		UserDetailsDTO ud3DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Nebojsa","Rajic", "Novi Sad","Srbija");
+		UserDetailsDTO ud4DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Pera","Peric", "Novi Sad","Srbija");
+		UserDetailsDTO ud5DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Smiljana","Tedic", "Novi Sad","Srbija");
+		UserDetailsDTO ud6DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Milana","Carapic", "Novi Sad","Srbija");
+		UserDetailsDTO ud7DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Mika","Mikic", "Veternik","Srbija");
+		UserDetailsDTO ud8DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Sima","Simic", "Veternik","Srbija");
+		UserDetailsDTO ud9DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Bisa","Bisic", "Veternik","Srbija");
 		UserDetails ud1 = userDetailsService.saveUserDetails(ud1DTO);
 		UserDetails ud2 = userDetailsService.saveUserDetails(ud2DTO);
 		UserDetails ud3 = userDetailsService.saveUserDetails(ud3DTO);
 		UserDetails ud4 = userDetailsService.saveUserDetails(ud4DTO);
 		UserDetails ud5 = userDetailsService.saveUserDetails(ud5DTO);
 		UserDetails ud6 = userDetailsService.saveUserDetails(ud6DTO);
+		UserDetails ud7 = userDetailsService.saveUserDetails(ud7DTO);
+		UserDetails ud8 = userDetailsService.saveUserDetails(ud8DTO);
+		UserDetails ud9 = userDetailsService.saveUserDetails(ud9DTO);
 		
 		UserDTO u1DTO = new UserDTO("a","a",ud1.getId());
 		UserDTO u2DTO = new UserDTO("b","b",ud2.getId());
@@ -91,12 +115,18 @@ public class TestData {
 		UserDTO u4DTO = new UserDTO("d","d",ud4.getId());
 		UserDTO u5DTO = new UserDTO("s","s",ud5.getId());
 		UserDTO u6DTO = new UserDTO("m","m",ud6.getId());
+		UserDTO u7DTO = new UserDTO("z","z",ud7.getId());
+		UserDTO u8DTO = new UserDTO("x","x",ud8.getId());
+		UserDTO u9DTO = new UserDTO("y","y",ud9.getId());
 		User u1 = userService.saveUser(u1DTO);
 		User u2 = userService.saveUser(u2DTO);
 		User u3 = userService.saveUser(u3DTO);
 		User u4 = userService.saveUser(u4DTO);
 		User u5 = userService.saveUser(u5DTO);
 		User u6 = userService.saveUser(u6DTO);
+		User u7 = userService.saveUser(u7DTO);
+		User u8 = userService.saveUser(u8DTO);
+		User u9 = userService.saveUser(u9DTO);
 		
 		ScienceFieldDTO sf1DTO = new ScienceFieldDTO("Medicina");
 		ScienceFieldDTO sf2DTO = new ScienceFieldDTO("Matematika");
@@ -173,7 +203,7 @@ public class TestData {
 		m1.setMainEditor(e1);
 		m2.setMainEditor(e2);				
 		magazineService.saveMagazine(m1); //ubacio dodatnu metodu da ne mora DTO
-		magazineService.saveMagazine(m2);
+		magazineService.saveMagazine(m2);	
 		
 		EditionDTO ed1DTO = new EditionDTO(m1.getIssn(),20.00, "Prvo izdanje");
 		EditionDTO ed2DTO = new EditionDTO(m1.getIssn(),20.00, "Drugo izdanje");
@@ -217,6 +247,39 @@ public class TestData {
 		Paper p2 = paperService.savePaper(p2DTO);
 		Paper p3 = paperService.savePaper(p3DTO);
 		
+		ReviewerDTO r1DTO = new ReviewerDTO(new HashSet<Long>() {{
+		    add(sf2.getId());
+		    add(sf4.getId());
+		    add(sf5.getId());
+		}}, "Neka titula",u7.getUsername());
+		ReviewerDTO r2DTO = new ReviewerDTO(new HashSet<Long>() {{
+		    add(sf2.getId());
+		    add(sf3.getId());
+		    add(sf4.getId());
+		}}, "Neka titula",u8.getUsername());
+		ReviewerDTO r3DTO = new ReviewerDTO(new HashSet<Long>() {{
+		    add(sf1.getId());
+		    add(sf4.getId());
+		    add(sf5.getId());
+		}}, "Neka titula",u9.getUsername());
+		ReviewerDTO r4DTO = new ReviewerDTO(new HashSet<Long>() {{
+		    add(sf1.getId());
+		    add(sf4.getId());
+		    add(sf5.getId());
+		}}, "Neka titula",u3.getUsername());
+		Reviewer r1 = reviewerService.saveReviewer(r1DTO);
+		Reviewer r2 = reviewerService.saveReviewer(r2DTO);
+		Reviewer r3 = reviewerService.saveReviewer(r3DTO);
+		Reviewer r4 = reviewerService.saveReviewer(r4DTO);
+		r1.getMagazines().add(m1);
+		r1.getMagazines().add(m2);
+		r2.getMagazines().add(m1);
+		r3.getMagazines().add(m2);
+		r4.getMagazines().add(m1);
+		reviewerService.save(r1);
+		reviewerService.save(r2);
+		reviewerService.save(r3);
+		reviewerService.save(r4);
 		
 	}
 

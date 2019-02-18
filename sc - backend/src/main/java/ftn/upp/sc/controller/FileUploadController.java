@@ -1,6 +1,5 @@
 package ftn.upp.sc.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ftn.upp.sc.dto.payment.ResponseDTO;
 import ftn.upp.sc.service.storage.StorageFileNotFoundException;
 import ftn.upp.sc.service.storage.StorageService;
 
@@ -50,7 +49,6 @@ public class FileUploadController {
         return "uploadForm";
     }
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws IOException {
@@ -61,7 +59,7 @@ public class FileUploadController {
     }
 
     @PostMapping("/files")
-    public ResponseEntity<Path> handleFileUpload(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<ResponseDTO> handleFileUpload(@RequestParam("file") MultipartFile file,
                                                  RedirectAttributes redirectAttributes) throws URISyntaxException {
 
         Path path = storageService.store(file);
@@ -70,8 +68,9 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
+        ResponseDTO dto = new ResponseDTO(file.getOriginalFilename());
         return ResponseEntity.created(uri)
-                .body(path);
+                .body(dto);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

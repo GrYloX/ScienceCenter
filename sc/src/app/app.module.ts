@@ -12,7 +12,9 @@ import { EditionComponent } from './edition/edition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthenticationService } from './authentication.service';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks/tasks.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     MagazinesComponent,
     MagazineDetailsComponent,
     LoginComponent,
-    EditionComponent
+    EditionComponent,
+    TasksComponent,
+    TaskDetailsComponent,
   ],
   imports: [
     BrowserModule,

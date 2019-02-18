@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.camunda.bpm.engine.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,9 @@ import ftn.upp.sc.model.TransactionState;
 import ftn.upp.sc.model.Type;
 import ftn.upp.sc.model.payment.MerchantOrder;
 import ftn.upp.sc.model.users.User;
+import ftn.upp.sc.model.users.UserDetails;
 import ftn.upp.sc.repository.MerchantOrderRepository;
+import ftn.upp.sc.repository.user.UserDetailsRepository;
 import ftn.upp.sc.repository.user.UserRepository;
 
 @Service
@@ -28,10 +31,16 @@ public class UserService {
 	UserConverter userConverter;
 	
 	@Autowired
+	UserDetailsRepository userDetailsRepository;
+	
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	MerchantOrderRepository merchantOrderRepository;
+	
+	@Autowired
+	IdentityService identityService;
 	
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -45,6 +54,9 @@ public class UserService {
 	public User saveUser(UserDTO dto) {
 		User user = userConverter.DtoToEntity(dto);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		org.camunda.bpm.engine.identity.User camundaUser = identityService.newUser(user.getUsername());
+		camundaUser.setPassword(user.getPassword());		
+		identityService.saveUser(camundaUser);		
 		return userRepository.save(user);
 	}
 
@@ -66,11 +78,6 @@ public class UserService {
 	public void successfulLogin(User user) {
 		user.setFailedLoginAttempts(0);
 		userRepository.save(user);
-	}
-
-	public User add(@Valid User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
 	}
 
 	public UserDTO getUserDTO(User user) {

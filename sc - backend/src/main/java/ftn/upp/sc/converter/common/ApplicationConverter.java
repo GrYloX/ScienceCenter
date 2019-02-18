@@ -1,12 +1,15 @@
 package ftn.upp.sc.converter.common;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ftn.upp.sc.converter.Converter;
 import ftn.upp.sc.dto.common.ApplicationDTO;
+import ftn.upp.sc.dto.common.MagazineDTO;
 import ftn.upp.sc.model.common.Application;
+import ftn.upp.sc.model.common.Magazine;
 import ftn.upp.sc.model.users.UserDetails;
 import ftn.upp.sc.repository.common.MagazineRepository;
 import ftn.upp.sc.repository.common.ScienceFieldRepository;
@@ -16,7 +19,6 @@ import ftn.upp.sc.repository.user.UserRepository;
 @Component
 public class ApplicationConverter implements Converter<Application, ApplicationDTO> {
 
-	@Autowired
 	private ModelMapper mapper;
 	
 	@Autowired
@@ -31,6 +33,18 @@ public class ApplicationConverter implements Converter<Application, ApplicationD
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+    public ApplicationConverter(ModelMapper modelMapper){
+		this.mapper = modelMapper;
+	    this.mapper.addMappings(skipModifiedFieldsMap);
+    }
+	
+	PropertyMap<Application, ApplicationDTO> skipModifiedFieldsMap = new PropertyMap<Application, ApplicationDTO>() {
+	      protected void configure() {
+	    	 skip(destination.getCoauthors());
+	     }
+	};
+	
 	@Override
 	public ApplicationDTO entityToDto(Application entity) {
 		ApplicationDTO dto = new ApplicationDTO();
@@ -41,6 +55,7 @@ public class ApplicationConverter implements Converter<Application, ApplicationD
 		dto.setAuthor(entity.getAuthor().getUsername());
 		dto.setMagazineIssn(entity.getMagazine().getIssn());
 		dto.setScienceFieldId(entity.getScienceField().getId());
+		dto.setScienceFieldName(entity.getScienceField().getName());
 		return dto;
 	}
 

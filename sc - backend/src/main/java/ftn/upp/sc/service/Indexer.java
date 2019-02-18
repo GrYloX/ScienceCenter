@@ -51,7 +51,6 @@ public class Indexer {
 	}
 	
 	public boolean add(IndexUnit unit){
-		System.out.println("jos malo pa zamalo");
 		unit = repository.index(unit);
 		if(unit!=null)
 			return true;
@@ -64,7 +63,6 @@ public class Indexer {
 	 * @param file Direktorijum u kojem se nalaze dokumenti koje treba indeksirati
 	 */
 	public int index(File file){		
-		System.out.println("tu sam");
 		DocumentHandler handler = null;
 		String fileName = null;
 		int retVal = 0;
@@ -85,9 +83,7 @@ public class Indexer {
 						System.out.println("Nije moguce indeksirati dokument sa nazivom: " + fileName);
 						continue;
 					}	
-					System.out.println("i ovde sam");
 					String text = handler.getText(newFile);
-					System.out.println("ali ovde nisam");
 					ScienceField sf = a.getScienceField();
 					Magazine m = a.getMagazine();
 					User author = a.getAuthor();

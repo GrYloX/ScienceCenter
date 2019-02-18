@@ -26,14 +26,6 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping
-	public ResponseEntity<User> register(@RequestBody @Valid User user) {
-		User registered = userService.add(user);
-		if(registered == null)
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
-		return new ResponseEntity<>(registered, HttpStatus.OK);
-	}
-
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping
 	public ResponseEntity<UserDTO> getCurrentUser(Principal principal) {

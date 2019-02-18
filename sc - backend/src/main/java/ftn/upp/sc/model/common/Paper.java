@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 public class Paper {
 
 	@Id
-	@Column(nullable = false, length=30)
+	@Column(nullable = false)
 	private String doi;
 	
 	@OneToOne(fetch = FetchType.EAGER, optional = true)

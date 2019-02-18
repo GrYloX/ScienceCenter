@@ -17,6 +17,17 @@ public class DatabaseUri {
 	
 	@Value("${spring.data.kp}")
 	private String kpUri;
+	
+	@Value("${spring.data.sc}")
+	private String scUri;
+	
+	public String getScUri() {
+		return scUri;
+	}
+
+	public void setScUri(String scUri) {
+		this.scUri = scUri;
+	}
 
 	public String getPccUri() {
 		return pccUri;

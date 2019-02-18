@@ -6,6 +6,9 @@
     <li class="nav-item">
       <a class="nav-link text-white" routerLink="/search">Pretraga</a>
     </li>
+    <li *ngIf="getCurrentUser()" class="nav-item">
+      <a class="nav-link text-white" routerLink="/tasks">Moji zadaci</a>
+    </li>
   </ul>  
   <a *ngIf="getCurrentUser(); then no else yes" class="nav-link mr-0 text-white" routerLink="/login">Prijava</a>
               <ng-template #no>

@@ -4,11 +4,16 @@
       <h1>{{magazine.name}}</h1>
     </div>		
   <br/>
+  <div class="text-center">    
+    <a class="btn btn-danger" routerLink="/tasks/initiate">Objavi rad</a>
+    <br/>      
+  </div>
+  <br/>
   <div class="text-center" *ngIf="free">    
     <button class="btn btn-danger" (click)="subscribe()">Pretplati se</button>
-    <br/>
-    <br/>
-  </div>
+    <br/>    
+    <br/>  
+  </div>  
   <div class="row">
     <div class="col-3"></div>
     <div class="card col-3">

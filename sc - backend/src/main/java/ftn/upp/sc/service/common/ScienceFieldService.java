@@ -46,4 +46,9 @@ public class ScienceFieldService {
 		
 	}
 
+	public ScienceFieldDTO findOneDto(Long scienceFieldId) {
+		Optional<ScienceField> scienceField = scienceFieldRepository.findById(scienceFieldId);
+		return scienceFieldConverter.entityToDto(scienceField.get());
+	}
+
 }

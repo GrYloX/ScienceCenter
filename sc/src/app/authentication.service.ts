@@ -29,6 +29,9 @@ export class AuthenticationService {
       }
     );
   }
+  loginTask(dto){
+    return this.httpClient.post('https://localhost:8090/login', dto,{responseType:'text'});
+  }
 
   logout(){
     localStorage.removeItem('token');

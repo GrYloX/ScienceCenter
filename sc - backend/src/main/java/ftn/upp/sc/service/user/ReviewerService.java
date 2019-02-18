@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import ftn.upp.sc.converter.user.ReviewerConverter;
 import ftn.upp.sc.dto.user.ReviewerDTO;
+import ftn.upp.sc.model.common.Magazine;
+import ftn.upp.sc.model.common.ScienceField;
 import ftn.upp.sc.model.users.Reviewer;
 import ftn.upp.sc.repository.user.ReviewerRepository;
 
@@ -25,6 +27,14 @@ public class ReviewerService {
 		return reviewerRepository.findAll();
 	}
 	
+	public List<Reviewer> findByMagazinesContaining(Magazine magazine){
+		return reviewerRepository.findByMagazinesContaining(magazine);
+	}
+	
+	public List<Reviewer> findByMagazinesContainingAndFieldsContaining(Magazine magazine, ScienceField sf){
+		return reviewerRepository.findByMagazinesContainingAndFieldsContaining(magazine, sf);
+	}
+	
 	public Reviewer findOne(Integer id) {
 		Optional<Reviewer> reviewer = reviewerRepository.findById(id);
 		return reviewer.get();
@@ -32,6 +42,10 @@ public class ReviewerService {
 	
 	public Reviewer saveReviewer(ReviewerDTO dto) {
 		Reviewer reviewer = reviewerConverter.DtoToEntity(dto);
+		return reviewerRepository.save(reviewer);
+	}
+	
+	public Reviewer save(Reviewer reviewer){
 		return reviewerRepository.save(reviewer);
 	}
 

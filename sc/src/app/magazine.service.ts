@@ -22,7 +22,7 @@ export class MagazineService {
     ) {}
 
   getMagazines(): Observable<Magazine[]> {
-      return this.http.get<Magazine[]>(this.magazinesUrl+'/getMagazines', httpOptions);
+      return this.http.get<Magazine[]>(this.magazinesUrl+'/getMagazines');
   }
 
   getMagazine(magazineId : String): Observable<Magazine> {

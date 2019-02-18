@@ -1,4 +1,5 @@
 package ftn.upp.sc.dto.common;
+import java.util.HashSet;
 import java.util.Set;
 
 public class ApplicationDTO {
@@ -8,10 +9,11 @@ public class ApplicationDTO {
     private String paperAbstract;
     private String author;
 	private String keyTerms;
-	private Set<Long> coauthors;
+	private Set<Long> coauthors = new HashSet<Long>();
     private String magazineIssn;
     private Long scienceFieldId;
 	private String file;
+	private String scienceFieldName;
     
     public ApplicationDTO(){
     	
@@ -102,6 +104,18 @@ public class ApplicationDTO {
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+
+
+
+	public String getScienceFieldName() {
+		return scienceFieldName;
+	}
+
+
+
+	public void setScienceFieldName(String scienceFieldName) {
+		this.scienceFieldName = scienceFieldName;
 	}
 	
     

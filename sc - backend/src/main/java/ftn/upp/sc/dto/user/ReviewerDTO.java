@@ -1,13 +1,14 @@
 package ftn.upp.sc.dto.user;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ReviewerDTO{
 	
 	//mogu biti u vise casopisa i pokrivati vise naucnih oblasti, ali ne mogu biti urednici
 	
-    private Set<String> magazines;
-    private Set<Long> fields;    
+    private Set<String> magazines = new HashSet<String>();
+    private Set<Long> fields = new HashSet<Long>();    
     private Integer id;
     private String title;
     private String userId;
@@ -15,6 +16,21 @@ public class ReviewerDTO{
     public ReviewerDTO() {
     	
     }
+
+	public ReviewerDTO(Set<String> magazines, Set<Long> fields, String title, String userId) {
+		this.magazines = magazines;
+		this.fields = fields;
+		this.title = title;
+		this.userId = userId;
+	}
+	
+	public ReviewerDTO(Set<Long> fields, String title, String userId) {
+		this.fields = fields;
+		this.title = title;
+		this.userId = userId;
+	}
+
+
 
 	public Set<String> getMagazines() {
 		return magazines;

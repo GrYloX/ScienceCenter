@@ -1,10 +1,12 @@
 package ftn.upp.sc.converter.user;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ftn.upp.sc.converter.Converter;
+import ftn.upp.sc.dto.common.MagazineDTO;
 import ftn.upp.sc.dto.user.ReviewerDTO;
 import ftn.upp.sc.model.common.Magazine;
 import ftn.upp.sc.model.common.ScienceField;
@@ -16,7 +18,6 @@ import ftn.upp.sc.repository.user.UserRepository;
 @Component
 public class ReviewerConverter implements Converter<Reviewer, ReviewerDTO> {
 
-	@Autowired
 	private ModelMapper mapper;
 	
 	@Autowired
@@ -27,6 +28,19 @@ public class ReviewerConverter implements Converter<Reviewer, ReviewerDTO> {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+    public ReviewerConverter(ModelMapper modelMapper){
+		this.mapper = modelMapper;
+	    this.mapper.addMappings(skipModifiedFieldsMap);
+    }
+	
+	PropertyMap<Reviewer, ReviewerDTO> skipModifiedFieldsMap = new PropertyMap<Reviewer, ReviewerDTO>() {
+	      protected void configure() {
+	    	 skip(destination.getFields());
+	         skip(destination.getMagazines());
+	     }
+	};
 	
 	@Override
 	public ReviewerDTO entityToDto(Reviewer entity) {

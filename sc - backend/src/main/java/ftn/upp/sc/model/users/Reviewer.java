@@ -3,6 +3,7 @@ package ftn.upp.sc.model.users;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -19,7 +20,7 @@ public class Reviewer extends Authority {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(joinColumns = @JoinColumn(name = "reviewer_id"),
-            inverseJoinColumns = @JoinColumn(name = "magazine_id"))
+            inverseJoinColumns = @JoinColumn(name = "magazine_issn"))
     private Set<Magazine> magazines = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)

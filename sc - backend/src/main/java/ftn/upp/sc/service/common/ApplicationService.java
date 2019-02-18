@@ -29,8 +29,17 @@ public class ApplicationService {
 		return application.get();
 	}
 	
+	public ApplicationDTO findOneDto(Long id) {
+		Optional<Application> application = applicationRepository.findById(id);
+		return applicationConverter.entityToDto(application.get());
+	}
+	
 	public Application saveApplication(ApplicationDTO dto) {
 		Application application = applicationConverter.DtoToEntity(dto);
+		return applicationRepository.save(application);
+	}
+	
+	public Application save(Application application) {
 		return applicationRepository.save(application);
 	}
 

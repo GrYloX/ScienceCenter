@@ -37,7 +37,7 @@ public class Application {
 	private String keyTerms;
 	
 	@Column
-	@OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	private Set<UserDetails> coauthors = new HashSet<UserDetails>();
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)

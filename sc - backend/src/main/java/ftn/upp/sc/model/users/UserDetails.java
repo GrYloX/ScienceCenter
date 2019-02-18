@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ftn.upp.sc.model.common.Application;
 
 @Entity
@@ -34,10 +36,6 @@ public class UserDetails {
 	
 	@Column
 	private String country;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "application_id")
-    private Application application;
 	
 	public UserDetails(){
 		
@@ -101,14 +99,6 @@ public class UserDetails {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-	
-	public Application getApplication() {
-		return application;
-	}
-
-	public void setApplication(Application application) {
-		this.application = application;
 	}
 	
 }
