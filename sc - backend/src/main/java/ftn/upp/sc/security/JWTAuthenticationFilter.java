@@ -33,7 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
 		try {
-			ftn.upp.sc.model.users.User creds = new ObjectMapper().readValue(req.getInputStream(), ftn.upp.sc.model.users.User.class);
+			ftn.upp.sc.model.User creds = new ObjectMapper().readValue(req.getInputStream(), ftn.upp.sc.model.User.class);
 
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(),
 					creds.getPassword(), new ArrayList<>()));

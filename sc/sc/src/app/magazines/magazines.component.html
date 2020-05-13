@@ -1,0 +1,22 @@
+<br/>
+<div>
+  <div class="col text-center text-danger">
+    <h2>Naučni časopisi</h2>
+  </div>		
+  <br/>	
+</div>
+<div class="container bg-danger">
+  <ul class="list-unstyled">
+    <li *ngFor="let magazine of magazines">
+      <div class="card text-center border-danger">
+        <div class="card-body">
+          <h5 class="card-title">{{magazine.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">ISSN : {{magazine.issn}}</h6>
+          <a class="btn btn-danger" routerLink="/magazineDetails/{{magazine.issn}}">
+            Detalji
+          </a>
+        </div>   
+      </div>
+    </li>
+  </ul>
+</div>

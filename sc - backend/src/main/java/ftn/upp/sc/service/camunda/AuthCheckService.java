@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 import ftn.upp.sc.config.DatabaseUri;
 import ftn.upp.sc.dto.FormSubmissionDto;
-import ftn.upp.sc.dto.user.UserDTO;
-import ftn.upp.sc.model.users.User;
+import ftn.upp.sc.dto.UserDTO;
+import ftn.upp.sc.model.User;
 
 
 @Service

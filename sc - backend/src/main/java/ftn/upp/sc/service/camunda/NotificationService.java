@@ -17,15 +17,15 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import ftn.upp.sc.dto.ApplicationDTO;
 import ftn.upp.sc.dto.FormSubmissionDto;
-import ftn.upp.sc.dto.common.ApplicationDTO;
-import ftn.upp.sc.dto.user.UserDetailsDTO;
-import ftn.upp.sc.model.common.Application;
-import ftn.upp.sc.model.users.User;
-import ftn.upp.sc.model.users.UserDetails;
-import ftn.upp.sc.service.common.ApplicationService;
-import ftn.upp.sc.service.user.UserDetailsService;
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.dto.UserDetailsDTO;
+import ftn.upp.sc.model.Application;
+import ftn.upp.sc.model.User;
+import ftn.upp.sc.model.UserDetails;
+import ftn.upp.sc.service.ApplicationService;
+import ftn.upp.sc.service.UserDetailsService;
+import ftn.upp.sc.service.UserService;
 
 @Service
 public class NotificationService implements JavaDelegate {

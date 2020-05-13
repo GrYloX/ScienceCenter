@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ftn.upp.sc.dto.FormSubmissionDto;
-import ftn.upp.sc.dto.user.UserDTO;
-import ftn.upp.sc.dto.user.UserDetailsDTO;
-import ftn.upp.sc.model.users.UserDetails;
-import ftn.upp.sc.service.user.UserDetailsService;
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.dto.UserDTO;
+import ftn.upp.sc.dto.UserDetailsDTO;
+import ftn.upp.sc.model.UserDetails;
+import ftn.upp.sc.service.UserDetailsService;
+import ftn.upp.sc.service.UserService;
 
 @Service
 public class RegisterService implements JavaDelegate {

@@ -23,10 +23,10 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import ftn.upp.sc.model.common.Edition;
-import ftn.upp.sc.model.common.Paper;
-import ftn.upp.sc.repository.common.EditionRepository;
-import ftn.upp.sc.repository.common.PaperRepository;
+import ftn.upp.sc.model.Edition;
+import ftn.upp.sc.model.Paper;
+import ftn.upp.sc.repository.EditionRepository;
+import ftn.upp.sc.repository.PaperRepository;
 
 @Service
 public class FileSystemStorageService implements StorageService {

@@ -14,40 +14,40 @@ import org.camunda.bpm.engine.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ftn.upp.sc.dto.common.ApplicationDTO;
-import ftn.upp.sc.dto.common.EditionDTO;
-import ftn.upp.sc.dto.common.MagazineDTO;
-import ftn.upp.sc.dto.common.PaperDTO;
-import ftn.upp.sc.dto.common.ScienceFieldDTO;
+import ftn.upp.sc.dto.ApplicationDTO;
+import ftn.upp.sc.dto.EditionDTO;
+import ftn.upp.sc.dto.EditorDTO;
+import ftn.upp.sc.dto.MagazineDTO;
+import ftn.upp.sc.dto.PaperDTO;
+import ftn.upp.sc.dto.ReviewerDTO;
+import ftn.upp.sc.dto.ScienceFieldDTO;
+import ftn.upp.sc.dto.UserDTO;
+import ftn.upp.sc.dto.UserDetailsDTO;
 import ftn.upp.sc.dto.payment.PaymentOptionDTO;
 import ftn.upp.sc.dto.payment.PaymentParametersDTO;
-import ftn.upp.sc.dto.user.EditorDTO;
-import ftn.upp.sc.dto.user.ReviewerDTO;
-import ftn.upp.sc.dto.user.UserDTO;
-import ftn.upp.sc.dto.user.UserDetailsDTO;
-import ftn.upp.sc.model.common.Application;
-import ftn.upp.sc.model.common.Edition;
-import ftn.upp.sc.model.common.Magazine;
-import ftn.upp.sc.model.common.Paper;
-import ftn.upp.sc.model.common.ScienceField;
-import ftn.upp.sc.model.enums.MagazinePaymentType;
+import ftn.upp.sc.model.Application;
+import ftn.upp.sc.model.Edition;
+import ftn.upp.sc.model.Editor;
+import ftn.upp.sc.model.Magazine;
+import ftn.upp.sc.model.MagazinePaymentType;
+import ftn.upp.sc.model.Paper;
+import ftn.upp.sc.model.Reviewer;
+import ftn.upp.sc.model.ScienceField;
+import ftn.upp.sc.model.User;
+import ftn.upp.sc.model.UserDetails;
 import ftn.upp.sc.model.payment.PaymentOption;
 import ftn.upp.sc.model.payment.PaymentParameters;
-import ftn.upp.sc.model.users.Editor;
-import ftn.upp.sc.model.users.Reviewer;
-import ftn.upp.sc.model.users.User;
-import ftn.upp.sc.model.users.UserDetails;
-import ftn.upp.sc.service.common.ApplicationService;
-import ftn.upp.sc.service.common.EditionService;
-import ftn.upp.sc.service.common.MagazineService;
-import ftn.upp.sc.service.common.PaperService;
-import ftn.upp.sc.service.common.ScienceFieldService;
+import ftn.upp.sc.service.ApplicationService;
+import ftn.upp.sc.service.EditionService;
+import ftn.upp.sc.service.EditorService;
+import ftn.upp.sc.service.MagazineService;
+import ftn.upp.sc.service.PaperService;
+import ftn.upp.sc.service.ReviewerService;
+import ftn.upp.sc.service.ScienceFieldService;
+import ftn.upp.sc.service.UserDetailsService;
+import ftn.upp.sc.service.UserService;
 import ftn.upp.sc.service.payment.PaymentOptionService;
 import ftn.upp.sc.service.payment.PaymentParametersService;
-import ftn.upp.sc.service.user.EditorService;
-import ftn.upp.sc.service.user.ReviewerService;
-import ftn.upp.sc.service.user.UserDetailsService;
-import ftn.upp.sc.service.user.UserService;
 
 @Component
 public class TestData {
@@ -91,14 +91,14 @@ public class TestData {
 		identityService.deleteUser("y");
 		
 		UserDetailsDTO ud1DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Goran","Rajic", "Veternik","Srbija");
-		UserDetailsDTO ud2DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Valentina","Soldo", "Vrbas","Srbija");
-		UserDetailsDTO ud3DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Nebojsa","Rajic", "Novi Sad","Srbija");
-		UserDetailsDTO ud4DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Pera","Peric", "Novi Sad","Srbija");
-		UserDetailsDTO ud5DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Smiljana","Tedic", "Novi Sad","Srbija");
-		UserDetailsDTO ud6DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Milana","Carapic", "Novi Sad","Srbija");
-		UserDetailsDTO ud7DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Mika","Mikic", "Veternik","Srbija");
-		UserDetailsDTO ud8DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Sima","Simic", "Veternik","Srbija");
-		UserDetailsDTO ud9DTO = new UserDetailsDTO(0, "goranrajic95@gmail.com","Bisa","Bisic", "Veternik","Srbija");
+		UserDetailsDTO ud2DTO = new UserDetailsDTO(1, "goranrajic95@gmail.com","Valentina","Soldo", "Vrbas","Srbija");
+		UserDetailsDTO ud3DTO = new UserDetailsDTO(2, "goranrajic95@gmail.com","Nebojsa","Rajic", "Novi Sad","Srbija");
+		UserDetailsDTO ud4DTO = new UserDetailsDTO(3, "goranrajic95@gmail.com","Pera","Peric", "Novi Sad","Srbija");
+		UserDetailsDTO ud5DTO = new UserDetailsDTO(4, "goranrajic95@gmail.com","Smiljana","Tedic", "Novi Sad","Srbija");
+		UserDetailsDTO ud6DTO = new UserDetailsDTO(5, "goranrajic95@gmail.com","Milana","Carapic", "Novi Sad","Srbija");
+		UserDetailsDTO ud7DTO = new UserDetailsDTO(6, "goranrajic95@gmail.com","Mika","Mikic", "Veternik","Srbija");
+		UserDetailsDTO ud8DTO = new UserDetailsDTO(7, "goranrajic95@gmail.com","Sima","Simic", "Veternik","Srbija");
+		UserDetailsDTO ud9DTO = new UserDetailsDTO(8, "goranrajic95@gmail.com","Bisa","Bisic", "Veternik","Srbija");
 		UserDetails ud1 = userDetailsService.saveUserDetails(ud1DTO);
 		UserDetails ud2 = userDetailsService.saveUserDetails(ud2DTO);
 		UserDetails ud3 = userDetailsService.saveUserDetails(ud3DTO);
@@ -191,7 +191,7 @@ public class TestData {
 		}},0.00,MagazinePaymentType.paid_access, paymentOptionParameters1);
 		MagazineDTO m2DTO = new MagazineDTO("4567-0123","Casopis medicine",new HashSet<Long>() {{
 		    add(sf1.getId());
-		}},20.00,MagazinePaymentType.open_access, paymentOptionParameters2);
+		}},20.00,MagazinePaymentType.paid_access, paymentOptionParameters2);
 		Magazine m1 = magazineService.saveMagazine(m1DTO);
 		Magazine m2 = magazineService.saveMagazine(m2DTO);
 		
@@ -213,27 +213,15 @@ public class TestData {
 		Edition ed3 = editionService.saveEdition(ed3DTO);
 		
 		ApplicationDTO a1DTO = new ApplicationDTO("SOAP web servisi u sistemu za pretragu "
-				+ "i rezervisanje smestaja", "U radu se opisuje primena SOAP veb servisa u "
-						+ "komunikaciji razlicitih modula u sistemu za pretragu"
-						+ " i rezervaciju smestaja. Objašnjeno je koje su potrebe "
-						+ "sistema i koje su tehnologije izabrane u implementaciji "
-						+ "modula sistema. Opisan je model podataka i objašnjeni "
-						+ "su neki od detalja implementacije.", u1.getUsername(), 
+				+ "i rezervisanje smestaja", "U radu se opisuje primena SOAP veb servisa u ", u1.getUsername(), 
 						"Veb aplikacije, SOAP, Angular",m1.getIssn(), sf5.getId(), "Diplomski RA96-2014.doc");
 		
-		ApplicationDTO a2DTO = new ApplicationDTO("Poredjenje programskih jezika C++ i C#","U ovom radu"
-				+ " se vrsi poredjenje programskih jezika C++ i C#. Za potrebe rada bilo je neophodno "
-				+ "detaljno analizirati sve osobine i elemente programskih jezika pojedinacno,"
-				+ " medjusobno ih uporediti i utvrditi u kojoj meri se podudaraju.", u6.getUsername(), 
+		ApplicationDTO a2DTO = new ApplicationDTO("Poredjenje programskih jezika C++ i C#","U ovom radu", u6.getUsername(), 
 						"Objektno-orijentisani jezik, C++, C#",m1.getIssn(), sf5.getId(), 
 						"RA882014_v2.doc");
 		ApplicationDTO a3DTO = new ApplicationDTO("Implementacija veb aplikacije za podrsku"
 				+ " rada turisticke agencije "
-				+ "u programskom jeziku Java","U radu je opisana izrada "
-						+ "veb aplikacije za podršku rada turisticke agencije."
-						+ " Modeliranje je dato preko UML dijagrama, "
-						+ "a aplikacija je implementirana koriscenjem "
-						+ "Java programskog jezika i Eclipse razvojnog okruzenja.", u5.getUsername(), 
+				+ "u programskom jeziku Java","U radu je opisana izrada ", u5.getUsername(), 
 						"Java, Web servisi, Spring boot",m1.getIssn(), sf5.getId(), 
 						"SMDIPL-converted-17714239.doc");
 		Application a1 = applicationService.saveApplication(a1DTO);

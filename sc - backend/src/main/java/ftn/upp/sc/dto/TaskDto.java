@@ -7,7 +7,6 @@ public class TaskDto {
 	
 	public TaskDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public TaskDto(String taskId, String name) {

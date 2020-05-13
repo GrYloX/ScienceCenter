@@ -17,10 +17,10 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ftn.upp.sc.model.Magazine;
 import ftn.upp.sc.model.TransactionState;
 import ftn.upp.sc.model.Type;
-import ftn.upp.sc.model.common.Magazine;
-import ftn.upp.sc.model.users.User;
+import ftn.upp.sc.model.User;
 
 
 @Entity

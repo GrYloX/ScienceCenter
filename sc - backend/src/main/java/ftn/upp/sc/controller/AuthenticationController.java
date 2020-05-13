@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ftn.upp.sc.dto.user.UserDTO;
-import ftn.upp.sc.model.users.User;
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.dto.UserDTO;
+import ftn.upp.sc.model.User;
+import ftn.upp.sc.service.UserService;
 
 
 @RestController

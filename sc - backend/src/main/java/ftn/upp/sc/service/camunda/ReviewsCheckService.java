@@ -9,10 +9,10 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ftn.upp.sc.model.common.ScienceField;
-import ftn.upp.sc.model.users.Reviewer;
-import ftn.upp.sc.model.users.User;
-import ftn.upp.sc.repository.user.ReviewerRepository;
+import ftn.upp.sc.model.Reviewer;
+import ftn.upp.sc.model.ScienceField;
+import ftn.upp.sc.model.User;
+import ftn.upp.sc.repository.ReviewerRepository;
 
 @Service
 public class ReviewsCheckService implements JavaDelegate {

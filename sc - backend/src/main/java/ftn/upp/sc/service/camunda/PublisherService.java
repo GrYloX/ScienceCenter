@@ -9,14 +9,14 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ftn.upp.sc.dto.common.EditionDTO;
-import ftn.upp.sc.dto.common.PaperDTO;
-import ftn.upp.sc.model.common.Application;
-import ftn.upp.sc.model.common.Edition;
-import ftn.upp.sc.model.common.Paper;
-import ftn.upp.sc.service.common.ApplicationService;
-import ftn.upp.sc.service.common.EditionService;
-import ftn.upp.sc.service.common.PaperService;
+import ftn.upp.sc.dto.EditionDTO;
+import ftn.upp.sc.dto.PaperDTO;
+import ftn.upp.sc.model.Application;
+import ftn.upp.sc.model.Edition;
+import ftn.upp.sc.model.Paper;
+import ftn.upp.sc.service.ApplicationService;
+import ftn.upp.sc.service.EditionService;
+import ftn.upp.sc.service.PaperService;
 
 @Service
 public class PublisherService implements JavaDelegate {

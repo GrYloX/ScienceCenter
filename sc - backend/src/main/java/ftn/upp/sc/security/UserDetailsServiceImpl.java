@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.service.UserService;
 
 
 @Service
@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ftn.upp.sc.model.users.User user = userService.findOne(username);
+		ftn.upp.sc.model.User user = userService.findOne(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}

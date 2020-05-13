@@ -7,7 +7,7 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.service.UserService;
 
 @Component
 public class AuthenticationEventListener {
@@ -18,7 +18,7 @@ public class AuthenticationEventListener {
 	@EventListener
 	public void authenticationFailed(AuthenticationFailureBadCredentialsEvent event) {
 		String username = (String) event.getAuthentication().getPrincipal();
-		ftn.upp.sc.model.users.User user = userService.findOne(username);
+		ftn.upp.sc.model.User user = userService.findOne(username);
 		userService.failedLogin(user);
 	}
 
@@ -26,7 +26,7 @@ public class AuthenticationEventListener {
 	public void authenticationSucceeded(AuthenticationSuccessEvent event) {
 		User principal = (User) event.getAuthentication().getPrincipal();
 		String username = principal.getUsername();
-		ftn.upp.sc.model.users.User user = userService.findOne(username);
+		ftn.upp.sc.model.User user = userService.findOne(username);
 		userService.successfulLogin(user);
 	}
 

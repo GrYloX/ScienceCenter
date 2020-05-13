@@ -18,9 +18,9 @@ import ftn.upp.sc.dto.payment.MerchantOrderDTO;
 import ftn.upp.sc.dto.payment.ResponseDTO;
 import ftn.upp.sc.model.TransactionState;
 import ftn.upp.sc.model.payment.MerchantOrder;
+import ftn.upp.sc.repository.MagazineRepository;
 import ftn.upp.sc.repository.MerchantOrderRepository;
-import ftn.upp.sc.repository.common.MagazineRepository;
-import ftn.upp.sc.repository.user.UserRepository;
+import ftn.upp.sc.repository.UserRepository;
 
 
 @Controller

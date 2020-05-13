@@ -10,19 +10,19 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import ftn.upp.sc.dto.common.ApplicationDTO;
-import ftn.upp.sc.model.common.Magazine;
-import ftn.upp.sc.model.common.ScienceField;
-import ftn.upp.sc.model.users.Editor;
-import ftn.upp.sc.model.users.Reviewer;
-import ftn.upp.sc.model.users.User;
-import ftn.upp.sc.model.users.UserDetails;
-import ftn.upp.sc.repository.common.ScienceFieldRepository;
-import ftn.upp.sc.repository.user.EditorRepository;
-import ftn.upp.sc.repository.user.ReviewerRepository;
-import ftn.upp.sc.service.common.ApplicationService;
-import ftn.upp.sc.service.common.MagazineService;
-import ftn.upp.sc.service.user.UserService;
+import ftn.upp.sc.dto.ApplicationDTO;
+import ftn.upp.sc.model.Editor;
+import ftn.upp.sc.model.Magazine;
+import ftn.upp.sc.model.Reviewer;
+import ftn.upp.sc.model.ScienceField;
+import ftn.upp.sc.model.User;
+import ftn.upp.sc.model.UserDetails;
+import ftn.upp.sc.repository.EditorRepository;
+import ftn.upp.sc.repository.ReviewerRepository;
+import ftn.upp.sc.repository.ScienceFieldRepository;
+import ftn.upp.sc.service.ApplicationService;
+import ftn.upp.sc.service.MagazineService;
+import ftn.upp.sc.service.UserService;
 
 @Service
 public class AssignEditorService implements JavaDelegate {
